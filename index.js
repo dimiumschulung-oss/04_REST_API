@@ -18,4 +18,3 @@ app.listen(
 app.get('/', (reg, res)=> {
     res.sendStatus(200);
 }
-
