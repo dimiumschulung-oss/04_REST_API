@@ -1,0 +1,82 @@
+### =========================================================================
+### Umgebungsvariablen
+### =========================================================================
+# Im Codespace kann direkt localhost angesprochen werden
+@baseUrl = http://localhost:8080
+@contentType = application/json
+
+
+### =========================================================================
+### 1. GRUNDLEGENDE STATUSPRÜFUNGEN (GET)
+### =========================================================================
+
+### Wurzelverzeichnis prüfen (200 OK)
+GET {{baseUrl}}/
+
+### Einfacher API-Check (200 OK)
+GET {{baseUrl}}/api/test
+
+
+### =========================================================================
+### 2. VERSCHIEDENE DATENTYPEN ABFRAGEN (GET)
+### =========================================================================
+
+### Direktes JSON-Objekt abrufen
+GET {{baseUrl}}/api/json1
+
+### JSON-Datei aus src/test.json abrufen
+GET {{baseUrl}}/api/json2
+
+### HTML-Datei ausliefern (src/boo.html)
+GET {{baseUrl}}/api/html
+
+### JPG-Bild ausliefern (src/404.jpg)
+GET {{baseUrl}}/api/jpg
+
+
+### =========================================================================
+### 3. DATEN SENDEN & ERSTELLEN (POST)
+### =========================================================================
+
+### POST-Request mit JSON-Body
+POST {{baseUrl}}/api/post
+Content-Type: {{contentType}}
+
+{
+  "title": "Neuer Eintrag",
+  "author": "Kursteilnehmer",
+  "role": "Entwickler"
+}
+
+
+### =========================================================================
+### 4. DATEI AKTUALISIEREN & MERGEN (PUT)
+### =========================================================================
+
+### Beruf auf "CEO" ändern (src/test.json wird aktualisiert)
+PUT {{baseUrl}}/api/update
+Content-Type: {{contentType}}
+
+{
+  "occupation": "CEO"
+}
+
+### Mehrere Werte gleichzeitig ändern/hinzufügen
+PUT {{baseUrl}}/api/update
+Content-Type: {{contentType}}
+
+{
+  "age": 30,
+  "city": "Berlin"
+}
+
+
+### =========================================================================
+### 5. EINZELNE FELDER ENTFERNEN (DELETE)
+### =========================================================================
+
+### Feld "occupation" aus src/test.json löschen
+DELETE {{baseUrl}}/api/test/occupation
+
+### Didaktischer Testfall: Erneut löschen, um "404 Not Found" zu demonstrieren
+DELETE {{baseUrl}}/api/test/occupation
