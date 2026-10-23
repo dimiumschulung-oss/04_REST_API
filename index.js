@@ -15,6 +15,6 @@ app.listen(
 );
 
 // TEST
-app.get('/', (reg, res)=> {
+app.get('/', (req, res) => {
     res.sendStatus(200);
-}
+});
